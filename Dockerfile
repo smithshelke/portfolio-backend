@@ -21,7 +21,7 @@ COPY . .
 # GOOS=linux ensures the binary is built for a Linux environment
 # -o /app/backend specifies the output path and name of the executable
 # ./main.go specifies the entry point for the build
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/backend ./main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/backend .
 
 # --- Run Stage ---
 # Use a minimal base image for the final application
