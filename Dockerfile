@@ -16,12 +16,18 @@ RUN go mod download
 # Copy the rest of the application source code
 COPY . .
 
-# Build the application
-# CGO_ENABLED=0 ensures a statically linked binary, suitable for scratch/alpine images
-# GOOS=linux ensures the binary is built for a Linux environment
-# -o /app/backend specifies the output path and name of the executable
-# ./main.go specifies the entry point for the build
+# Install code generation tools
+RUN go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+RUN go install github.com/swaggo/swag/cmd/swag@v1.16.6
+
+# Generate Go code from SQL and Swagger definitions
+RUN sqlc generate
+RUN swag init --output docs --parseDependency --parseInternal
+
+# Ensure all module dependencies are correctly resolved after generation
 RUN go mod tidy
+
+# Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/backend .
 
 # --- Run Stage ---
