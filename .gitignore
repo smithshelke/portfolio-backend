@@ -1,0 +1,38 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with the -o flag
+*.out
+
+# Dependency directories
+vendor/
+
+# Go workspace file
+go.work.sum
+
+# Editor directories and files
+.idea/
+.vscode/
+.DS_Store
+
+# sqlc generated files
+db/sqlc/
+
+# Swagger generated files
+docs/docs.go
+docs/swagger.json
+docs/swagger.yaml
+
+# Atlas migration sum file
+db/migrations/atlas.sum
+
+# Environment variables
+.env
+.env.*
