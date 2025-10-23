@@ -6,7 +6,6 @@ env "dev" {
 }
 
 env "prod" {
-  schema = "public"
   migration {
     dir = "file://db/migrations"
   }
