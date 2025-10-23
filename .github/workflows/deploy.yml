@@ -51,13 +51,17 @@ jobs:
           # Pull the latest image from GHCR
           docker pull ghcr.io/${{ github.repository }}:latest
 
+          # Create a custom network if it doesn't exist
+          docker network create portfolio-network || true
+
           # Stop and remove the old container if it exists
           docker stop portfolio-backend || true
           docker rm portfolio-backend || true
 
-          # Run the new container from the new image
+          # Run the new container from the new image, attaching it to the network
           docker run -d \
             --name portfolio-backend \
+            --network portfolio-network \
             -p 8080:8080 \
             -e DB_URL=${{ secrets.DB_URL }} \
             ghcr.io/${{ github.repository }}:latest
