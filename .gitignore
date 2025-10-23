@@ -30,8 +30,6 @@ docs/docs.go
 docs/swagger.json
 docs/swagger.yaml
 
-# Atlas migration sum file
-db/migrations/atlas.sum
 
 # Environment variables
 .env
