@@ -45,6 +45,10 @@ jobs:
         username: ${{ secrets.HETZNER_USER }}
         key: ${{ secrets.HETZNER_SSH_KEY }}
         script: |
+          # keys 
+          echo "DB_URL: "${{ secrets.DB_URL}}
+          echo "GA_DB_URI: "${{ secrets.GA_DB_URI}}
+          
           # Log in to GHCR on the server
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
