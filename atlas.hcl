@@ -6,7 +6,6 @@ env "dev" {
 }
 
 env "prod" {
-  url = env("DB_URL")
   migration {
     dir = "file://db/migrations"
   }
