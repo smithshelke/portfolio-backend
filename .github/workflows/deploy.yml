@@ -31,12 +31,12 @@ jobs:
 
     - name: Inspect Schema Revisions
       run: |
-        docker run --rm -v ${{ github.workspace }}:/src -w /src arigaio/atlas --url "${{ secrets.GA_DB_URI }}" migrate status --dir file://db/migrations
+        docker run --rm -v ${{ github.workspace }}:/src -w /src arigaio/atlas --url "${{ secrets.GA_DB_URI }}" migrate status --dir file://db/migrations --revisions-schema public
 
     - name: Run Migrations
       run: |
         docker run --rm -v ${{ github.workspace }}:/src -w /src \
-          arigaio/atlas --env prod --url ${{ secrets.GA_DB_URI }} migrate apply --dir file://db/migrations
+          arigaio/atlas --env prod --url ${{ secrets.GA_DB_URI }} migrate apply --dir file://db/migrations --revisions-schema public
 
     # - name: Deploy to Hetzner Server
     #   uses: appleboy/ssh-action@master
