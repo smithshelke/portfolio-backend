@@ -59,7 +59,7 @@ jobs:
           docker run -d \
             --name portfolio-backend \
             -p 8080:8080 \
-            -e DB_URL=${{ secrets.DB_URL }} \
+            -e DB_URL=\${{ secrets.DB_URL }} \
             ghcr.io/${{ github.repository }}:latest
 
           echo "Deployment complete!"
